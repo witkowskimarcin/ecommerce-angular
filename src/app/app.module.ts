@@ -20,6 +20,9 @@ import { MatListModule } from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import {MatInputModule} from '@angular/material/input';
     HomeComponent,
     NavbarComponent,
     AdminComponent,
-    NavigationComponent
+    NavigationComponent,
+    AdminProductsComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,9 @@ import {MatInputModule} from '@angular/material/input';
     MatListModule,
     MatExpansionModule,
     HttpClientModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

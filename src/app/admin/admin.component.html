@@ -12,7 +12,102 @@
             {{c.name}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p *ngFor="let s of c.subcategories">{{s.name}}</p>
+
+        <mat-expansion-panel (opened)="setEditFormCategory(c)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Edytuj
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <form [formGroup]="formCe" (ngSubmit)="editCategory(c.id)">
+            <mat-form-field>
+              <mat-label>Nazwa</mat-label>
+              <input type="text" formControlName="name" matInput placeholder="Nazwa">
+            </mat-form-field>
+            <br>
+            <button type="submit" [disabled]="formCe.invalid" mat-button>Edytuj</button>
+          </form>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Usuń
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Czy na pewno?</p>
+            <button (click)="removeCategory(c.id)" mat-button>Usuń</button>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Podkategorie
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-expansion-panel *ngFor="let s of c.subcategories">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{s.name}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-expansion-panel (opened)="setEditFormSubcategory(s)">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Edytuj
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form [formGroup]="formSce" (ngSubmit)="editSubcategory(s.id)">
+                <mat-form-field>
+                  <mat-label>Nazwa</mat-label>
+                  <input matInput type="text" formControlName="name" placeholder="Nazwa">
+                </mat-form-field>
+                <br>
+                <button type="submit" [disabled]="formSce.invalid" mat-button>Edytuj</button>
+              </form>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Usuń
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+                <p>Czy na pewno?</p>
+                <button (click)="removeSubcategory(s.id)" mat-button>Usuń</button>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel routerLink="subcategory/{{s.id}}/products" >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Produkty
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+
+          </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Dodaj podkategorię
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="formSc" (ngSubmit)="addSubcategory(c.id)">
+            <mat-form-field>
+              <mat-label>Nazwa</mat-label>
+              <input type="text" formControlName="name" matInput placeholder="Nazwa">
+            </mat-form-field>
+            <br>
+            <button type="submit" [disabled]="formSc.invalid" mat-button>Dodaj</button>
+          </form>
+        </mat-expansion-panel>
+
+        </mat-expansion-panel>
       </mat-expansion-panel>
 
 <!--      <a mat-button routerLink="admin/category/add">Dodaj kategorię</a>-->
@@ -23,11 +118,14 @@
             Dodaj kategorię
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <form [formGroup]="formC" (ngSubmit)="addCategory()">
           <mat-form-field>
             <mat-label>Nazwa</mat-label>
-            <input matInput placeholder="Nazwa">
+            <input type="text" formControlName="name" matInput placeholder="Nazwa">
           </mat-form-field>
-        <a mat-button (click)="addCategory()">Dodaj kategorię</a>
+          <br>
+          <button type="submit" [disabled]="formC.invalid" mat-button>Dodaj</button>
+        </form>
       </mat-expansion-panel>
 
     </mat-card-content>

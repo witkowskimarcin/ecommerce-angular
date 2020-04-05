@@ -64,7 +64,7 @@ export class AdminService {
     return this.http.post<any>(address, category, { headers });
   }
 
-  editSubcategory(id: number, category: CategoryModel){
+  editSubcategory(id: number, category: SubcategoryModel){
     const address = 'panel/admin/subcategory/'+id+'/edit';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.put<any>(address, category, { headers });
