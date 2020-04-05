@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CategoryModel} from '../model/category.model';
+import {HttpClient} from '@angular/common/http';
+import {AdminService} from '../admin.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  categories: CategoryModel[];
+
+  constructor(private service: AdminService) { }
 
   ngOnInit(): void {
+    this.service.getCategories().subscribe(response => {
+      this.categories = response;
+    }, error => console.log(error));
   }
 
 }

@@ -1,1 +1,16 @@
-<p>home works!</p>
+<mat-card>
+  <mat-card-title>Categories</mat-card-title>
+
+  <mat-card-content>
+
+    <mat-expansion-panel *ngFor="let c of categories">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{c.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-button *ngFor="let s of c.subcategories">{{s.name}}</a>
+    </mat-expansion-panel>
+
+  </mat-card-content>
+</mat-card>
