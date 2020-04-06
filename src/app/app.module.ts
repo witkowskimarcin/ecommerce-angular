@@ -23,6 +23,8 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
 import { ProductPageComponent } from './product-page/product-page.component';
+import {MatCarouselModule} from '@ngmodule/material-carousel';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { ProductPageComponent } from './product-page/product-page.component';
     HttpClientModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCarouselModule.forRoot(),
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

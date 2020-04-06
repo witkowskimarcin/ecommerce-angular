@@ -13,6 +13,7 @@ import {ImageModel} from '../model/image.model';
 })
 export class AdminProductsComponent implements OnInit {
 
+  cid: number;
   sid: number;
   products: ProductModel[];
   form: FormGroup;
@@ -28,6 +29,7 @@ export class AdminProductsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.cid = parseInt(this.route.snapshot.paramMap.get('cid'));
     this.sid = parseInt(this.route.snapshot.paramMap.get('sid'));
 
     this.form = this.formBuilder.group({
@@ -78,6 +80,7 @@ export class AdminProductsComponent implements OnInit {
     p.quantity = this.form.value.quantity;
     p.name = this.form.value.name;
     p.images = this.images;
+    p.images.map((e) => e.image = e.image.substring(e.image.indexOf(',') + 1));
 
     console.log("TUTAJ");
     console.log(p);

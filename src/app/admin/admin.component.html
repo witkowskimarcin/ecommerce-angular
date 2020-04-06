@@ -81,7 +81,7 @@
                 <button (click)="removeSubcategory(s.id)" mat-button>Usuń</button>
             </mat-expansion-panel>
 
-            <mat-expansion-panel routerLink="subcategory/{{s.id}}/products" >
+            <mat-expansion-panel routerLink="category/{{c.id}}/subcategory/{{s.id}}/products" >
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   Produkty

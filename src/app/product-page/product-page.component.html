@@ -1,3 +1,68 @@
 <div *ngIf="product!=null">
-  {{product.name}}
+  <br><br>
+
+  <mat-chip-list>
+    <mat-chip>{{category.name}}</mat-chip>
+    <mat-chip>{{subcategory.name}}</mat-chip>
+<!--    <mat-chip>Dal</mat-chip>-->
+  </mat-chip-list>
+
+<!--  <a>{{category.name}}</a>-->
+<!--  <a>{{subcategory.name}}</a>-->
+
+  <br><br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+
+        <!--- Image Slider -->
+        <div id="slides" class="carousel slide" data-ride="carousel">
+          <ul class="carousel-indicators">
+            <li data-target="#slides" data-slide-to="0" class="active"></li>
+          </ul>
+          <div class="carousel-inner" height="250">
+            <div class="carousel-item active">
+              <img src="data:image/jpeg;base64,{{product.images[0].image}}"
+                   class="img-circle mx-auto d-block"
+                   height="250" alt="obrazek">
+            </div>
+            <div class="carousel-item" *ngFor="let i of product.images.slice(1)">
+              <img src="data:image/jpeg;base64,{{i.image}}"
+                   class="img-circle mx-auto d-block"
+                   height="250" alt="obrazek">
+            </div>
+          </div>
+        </div>
+        <!--- Image Slider -->
+
+      </div>
+
+      <div class="col-sm-4">
+        <h3>{{product.name}}</h3>
+        <h3>{{product.description}}</h3>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card" style="max-width: 22rem; height: 24rem;">
+          <div class="card-body">
+            <h3 class="card-title text-center">{{product.price}} zł</h3>
+            <h5 class="card-text">Odbiór osobisty: GRATIS</h5>
+            <h5 class="card-text">Dostępnych sztuk: {{product.quantity}}</h5>
+            <h5 class="card-text"><a href="#">Koszty dostawy</a></h5>
+            <h5 class="card-text"><a href="#">Sprawdź dostępność w salonach</a></h5>
+            <div *ngIf="product.quantity>0">
+              <a class="btn btn-lg btn-success btn-block" style="color:#ffffff;" (click)="addToCart(1)">Do koszyka</a>
+            </div>
+            <div *ngIf="product.quantity<=0">
+              <a class="btn btn-lg btn-danger btn-block" style="color:#ffffff;">Brak produktu</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
