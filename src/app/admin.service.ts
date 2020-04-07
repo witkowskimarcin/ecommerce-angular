@@ -130,7 +130,7 @@ export class AdminService {
 
   //=================================================
 
-  getOpportunity(): Observable<PromotedproductModel[]>{
+  getOpportunity(): Observable<OpportunityModel[]>{
     const address = 'panel/admin/opportunity';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });

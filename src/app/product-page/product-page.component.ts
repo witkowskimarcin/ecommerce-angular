@@ -6,6 +6,7 @@ import {MainService} from '../main.service';
 import {ActivatedRoute} from '@angular/router';
 import {SubcategoryModel} from '../model/subcategory.model';
 import {CategoryModel} from '../model/category.model';
+import {CartModel} from '../model/cart.model';
 
 @Component({
   selector: 'app-product-page',
@@ -20,6 +21,7 @@ export class ProductPageComponent implements OnInit {
   sid: number;
   category: CategoryModel;
   subcategory: SubcategoryModel;
+  // cart: CartModel;
 
   constructor(private service: MainService,
               private formBuilder: FormBuilder,
@@ -30,6 +32,11 @@ export class ProductPageComponent implements OnInit {
     this.cid = parseInt(this.route.snapshot.paramMap.get('cid'));
     this.sid = parseInt(this.route.snapshot.paramMap.get('sid'));
     this.pid = parseInt(this.route.snapshot.paramMap.get('pid'));
+
+    // this.service.getCart().subscribe(response => {
+    //   this.cart = response;
+    //   console.log(this.product);
+    // }, error => console.log(error));
 
     this.service.getCategory(this.cid).subscribe(response => {
       this.category = response;

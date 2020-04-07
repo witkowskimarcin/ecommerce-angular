@@ -25,6 +25,9 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
 import { ProductPageComponent } from './product-page/product-page.component';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {MatChipsModule} from '@angular/material/chips';
+import { ProductsComponent } from './products/products.component';
+import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import {MatChipsModule} from '@angular/material/chips';
     AdminComponent,
     NavigationComponent,
     AdminProductsComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    ProductsComponent,
+    FooterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

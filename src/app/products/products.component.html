@@ -1,0 +1,35 @@
+<br><br>
+<div *ngIf="category!=null && subcategory!=null">
+<mat-chip-list>
+  <mat-chip routerLink="">{{category.name}}</mat-chip>
+  <mat-chip routerLink="/category/{{category.id}}/subcategory/{{subcategory.id}}/products">{{subcategory.name}}</mat-chip>
+</mat-chip-list>
+
+<br><br>
+<table class="table table-striped"*ngIf="products!=null && products.length>0 else elseBlock">
+  <tr>
+    <th>Miniaturka</th>
+    <th>Nazwa produktu</th>
+    <th>Opis produktu</th>
+    <th>Cena produktu</th>
+  </tr>
+    <tr *ngFor="let product of products">
+      <td>
+        <span *ngIf="product.images.length>0; else elseBlock">
+          <img src="data:image/jpeg;base64,{{product.images[0].image}}" alt="Brak miniaturki" height="100" width="100"/>
+        </span>
+        <ng-template #elseBlock>
+          Brak miniaturki
+        </ng-template>
+      </td>
+      <td><a routerLink="/category/{{category.id}}/subcategory/{{subcategory.id}}/product/{{product.id}}">{{product.name}}</a></td>
+      <td>{{product.description}}</td>
+      <td>{{product.price}} zł</td>
+    </tr>
+</table>
+<ng-template #elseBlock>
+  <h3>
+    Brak produktów
+  </h3>
+</ng-template>
+</div>

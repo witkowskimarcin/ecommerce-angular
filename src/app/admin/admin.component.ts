@@ -5,6 +5,8 @@ import {CategoryModel} from '../model/category.model';
 import {AdminService} from '../admin.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SubcategoryModel} from '../model/subcategory.model';
+import {PromotedproductModel} from '../model/promotedproduct.model';
+import {OpportunityModel} from '../model/opportunity.model';
 
 @Component({
   selector: 'app-admin',
@@ -12,39 +14,23 @@ import {SubcategoryModel} from '../model/subcategory.model';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit  {
-  /** Based on the screen size, switch from standard to one column per row */
-  // cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-  //   map(({ matches }) => {
-  //     if (matches) {
-  //       return [
-  //         { title: 'Card 1', cols: 1, rows: 1 },
-  //         { title: 'Card 2', cols: 1, rows: 1 },
-  //         { title: 'Card 3', cols: 1, rows: 1 },
-  //         { title: 'Card 4', cols: 1, rows: 1 }
-  //       ];
-  //     }
-  //
-  //     return [
-  //       { title: 'Card 1', cols: 2, rows: 1 },
-  //       { title: 'Card 2', cols: 1, rows: 1 },
-  //       { title: 'Card 3', cols: 1, rows: 2 },
-  //       { title: 'Card 4', cols: 1, rows: 1 }
-  //     ];
-  //   })
-  // );
 
   categories: CategoryModel[];
+  promotedproducts: PromotedproductModel[];
+  opportunity: OpportunityModel;
   formC: FormGroup;
   formCe: FormGroup;
   formSc: FormGroup;
   formSce: FormGroup;
-
-  // constructor(private breakpointObserver: BreakpointObserver,
-  //             private service: AdminService) {}
+  formPromotedProduct: FormGroup;
+  formOpporunity: FormGroup;
 
   constructor(private service: AdminService,  private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+
+    this.promotedproducts = [];
+
     this.service.getCategories().subscribe(response => {
       this.categories = response;
     }, error => console.log(error));
@@ -63,6 +49,14 @@ export class AdminComponent implements OnInit  {
 
     this.formSce = this.formBuilder.group({
       name: ['', Validators.required]
+    });
+
+    this.formPromotedProduct = this.formBuilder.group({
+      productId: ['', Validators.required]
+    });
+
+    this.formOpporunity = this.formBuilder.group({
+      productId: ['', Validators.required]
     });
   }
 
@@ -96,6 +90,14 @@ export class AdminComponent implements OnInit  {
 
   removeSubcategory(id: number) {
     this.service.removeSubcategory(id).subscribe(response => {} , error => console.log(error));
+  }
+
+  addPromotedProduct(){
+    let id = this.formPromotedProduct.value.productId;
+  }
+
+  setOpportunity(){
+    let id = this.formOpporunity.value.productId;
   }
 
   setEditFormCategory(category: CategoryModel){

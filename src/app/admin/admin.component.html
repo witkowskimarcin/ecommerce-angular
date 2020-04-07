@@ -3,7 +3,7 @@
 
   <mat-card>
     <mat-card-title>Kategorie</mat-card-title>
-
+<br>
     <mat-card-content>
 
       <mat-expansion-panel *ngFor="let c of categories">
@@ -131,27 +131,76 @@
     </mat-card-content>
   </mat-card>
 
+<br><br>
 
+  <mat-card>
+    <mat-card-title>Produkty promowane</mat-card-title>
+    <br>
+    <mat-card-content>
 
-  <!--  <mat-grid-list cols="2" rowHeight="350px">-->
-<!--    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">-->
-<!--      <mat-card class="dashboard-card">-->
-<!--        <mat-card-header>-->
-<!--          <mat-card-title>-->
-<!--            {{card.title}}-->
-<!--            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">-->
-<!--              <mat-icon>more_vert</mat-icon>-->
-<!--            </button>-->
-<!--            <mat-menu #menu="matMenu" xPosition="before">-->
-<!--              <button mat-menu-item>Expand</button>-->
-<!--              <button mat-menu-item>Remove</button>-->
-<!--            </mat-menu>-->
-<!--          </mat-card-title>-->
-<!--        </mat-card-header>-->
-<!--        <mat-card-content class="dashboard-card-content">-->
-<!--          <div>Card Content Here</div>-->
-<!--        </mat-card-content>-->
-<!--      </mat-card>-->
-<!--    </mat-grid-tile>-->
-<!--  </mat-grid-list>-->
+      <mat-expansion-panel *ngFor="let p of promotedproducts">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{p.product.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Dodaj nowy
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="formPromotedProduct" (ngSubmit)="addPromotedProduct()">
+          <mat-form-field>
+            <mat-label>ID Produktu</mat-label>
+            <input type="number" formControlName="productId" matInput placeholder="ID Produktu">
+          </mat-form-field>
+          <br>
+          <button type="submit" [disabled]="formPromotedProduct.invalid" mat-button>Dodaj</button>
+        </form>
+
+      </mat-expansion-panel>
+
+    </mat-card-content>
+  </mat-card>
+
+  <br><br>
+
+  <mat-card>
+    <mat-card-title>Złoty strzał</mat-card-title>
+    <br>
+    <mat-card-content>
+
+      <mat-expansion-panel *ngIf="opportunity!=null">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{opportunity.product.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Ustaw nowy
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="formOpporunity" (ngSubmit)="setOpportunity()">
+          <mat-form-field>
+            <mat-label>ID Produktu</mat-label>
+            <input type="number" formControlName="productId" matInput placeholder="ID Produktu">
+          </mat-form-field>
+          <br>
+          <button type="submit" [disabled]="formOpporunity.invalid" mat-button>Ustaw</button>
+        </form>
+
+      </mat-expansion-panel>
+
+    </mat-card-content>
+  </mat-card>
+
 </div>
