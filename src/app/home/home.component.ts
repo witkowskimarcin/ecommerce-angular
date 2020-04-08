@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoryModel} from '../model/category.model';
+import {CategoryModel} from '../_model/category.model';
 import {HttpClient} from '@angular/common/http';
-import {AdminService} from '../admin.service';
-import {PromotedproductModel} from '../model/promotedproduct.model';
-import {OpportunityModel} from '../model/opportunity.model';
-import {MainService} from '../main.service';
+import {AdminService} from '../_service/admin.service';
+import {PromotedproductModel} from '../_model/promotedproduct.model';
+import {OpportunityModel} from '../_model/opportunity.model';
+import {MainService} from '../_service/main.service';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
 
     this.service.getPromotedProducts().subscribe(response => {
       this.promotedproducts = response;
+      console.log(this.promotedproducts);
     }, error => console.log(error));
   }
 }

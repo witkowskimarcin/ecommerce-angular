@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MainService} from '../main.service';
-import {ProductModel} from '../model/products.model';
-import {CategoryModel} from '../model/category.model';
-import {SubcategoryModel} from '../model/subcategory.model';
+import {MainService} from '../_service/main.service';
+import {ProductModel} from '../_model/products.model';
+import {CategoryModel} from '../_model/category.model';
+import {SubcategoryModel} from '../_model/subcategory.model';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

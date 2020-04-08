@@ -28,6 +28,12 @@ import {MatChipsModule} from '@angular/material/chips';
 import { ProductsComponent } from './products/products.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartComponent } from './cart/cart.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { UserComponent } from './user/user.component';
+import { OrderComponent } from './order/order.component';
+import { RegisterComponent } from './register/register.component';
+import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -40,29 +46,35 @@ import { CartComponent } from './cart/cart.component';
     ProductPageComponent,
     ProductsComponent,
     FooterComponent,
-    CartComponent
+    CartComponent,
+    UserComponent,
+    OrderComponent,
+    RegisterComponent,
+    ContactComponent,
+    LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatCardModule,
-    MatMenuModule,
-    LayoutModule,
-    MatSidenavModule,
-    MatListModule,
-    MatExpansionModule,
-    HttpClientModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCarouselModule.forRoot(),
-    MatChipsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatGridListModule,
+        MatButtonModule,
+        MatCardModule,
+        MatMenuModule,
+        LayoutModule,
+        MatSidenavModule,
+        MatListModule,
+        MatExpansionModule,
+        HttpClientModule,
+        MatInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatCarouselModule.forRoot(),
+        MatChipsModule,
+        MatBadgeModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

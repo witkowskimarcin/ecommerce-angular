@@ -4,7 +4,8 @@ Angular application is a part of a bigger project which consist Rest API (https:
 
 ## Screenshots
 
-![Screenshot](ss1.png)
+![Screenshot](1.jpg)
+![Screenshot](2.jpg)
 
 ### Built With
 

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {CategoryModel} from './model/category.model';
-import {SubcategoryModel} from './model/subcategory.model';
-import {ProductModel} from './model/products.model';
-import {PromotedproductModel} from './model/promotedproduct.model';
-import {CartModel} from './model/cart.model';
-import {OpportunityModel} from './model/opportunity.model';
+import {CategoryModel} from '../_model/category.model';
+import {SubcategoryModel} from '../_model/subcategory.model';
+import {ProductModel} from '../_model/products.model';
+import {PromotedproductModel} from '../_model/promotedproduct.model';
+import {CartModel} from '../_model/cart.model';
+import {OpportunityModel} from '../_model/opportunity.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,49 +16,49 @@ export class MainService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<CategoryModel[]>{
-    const address = 'panel/admin/categories';
+    const address = 'categories';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });
   }
 
   getCategory(id: number): Observable<CategoryModel>{
-    const address = 'panel/admin/category/' +id;
+    const address = 'category/' +id;
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });
   }
 
   getSubcategories(id: number): Observable<SubcategoryModel[]>{
-    const address = 'panel/admin/category/'+id+'/subcategories';
+    const address = 'category/'+id+'/subcategories';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });
   }
 
   getSubcategory(id: number): Observable<SubcategoryModel>{
-    const address = 'panel/admin/subcategory/'+id;
+    const address = 'subcategory/'+id;
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });
   }
 
   getProducts(id: number): Observable<ProductModel[]>{
-    const address = 'panel/admin/subcategory/'+id+'/products';
+    const address = 'subcategory/'+id+'/products';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });
   }
 
   getProduct(id: number): Observable<ProductModel>{
-    const address = 'panel/admin/product/'+id;
+    const address = 'product/'+id;
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });
   }
 
   getPromotedProducts(): Observable<PromotedproductModel[]>{
-    const address = 'panel/admin/promotedproducts';
+    const address = 'promotedproducts';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });
   }
 
   getOpportunity(): Observable<OpportunityModel>{
-    const address = 'panel/admin/opportunity';
+    const address = 'opportunity';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.get<any>(address, { headers });
   }
@@ -75,12 +75,6 @@ export class MainService {
     return this.http.put<any>(address, { headers });
   }
 
-  // plusCart(id: number): Observable<CartModel[]>{
-  //   const address = 'cart/product/'+id+'/plus';
-  //   const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-  //   return this.http.put<any>(address, { headers });
-  // }
-
   minusCart(id: number){
     const address = 'cart/product/'+id+'/minus';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
@@ -91,5 +85,17 @@ export class MainService {
     const address = 'cart/clear';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
     return this.http.delete<any>(address, { headers });
+  }
+
+  getCategoryOfProduct(pid: number) {
+    const address = 'product/'+pid+'/category';
+    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
+    return this.http.get<any>(address, { headers });
+  }
+
+  getSubcategoryOfProduct(pid: number) {
+    const address = 'product/'+pid+'/subcategory';
+    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
+    return this.http.get<any>(address, { headers });
   }
 }

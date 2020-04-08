@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminService} from '../admin.service';
+import {AdminService} from '../_service/admin.service';
 import {FormBuilder} from '@angular/forms';
-import {ProductModel} from '../model/products.model';
-import {MainService} from '../main.service';
-import {ActivatedRoute} from '@angular/router';
-import {SubcategoryModel} from '../model/subcategory.model';
-import {CategoryModel} from '../model/category.model';
-import {CartModel} from '../model/cart.model';
+import {ProductModel} from '../_model/products.model';
+import {MainService} from '../_service/main.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SubcategoryModel} from '../_model/subcategory.model';
+import {CategoryModel} from '../_model/category.model';
+import {CartModel} from '../_model/cart.model';
+import {CartService} from '../_service/cart.service';
 
 @Component({
   selector: 'app-product-page',
@@ -15,22 +16,21 @@ import {CartModel} from '../model/cart.model';
 })
 export class ProductPageComponent implements OnInit {
 
-  product: ProductModel;
-  cid: number;
   pid: number;
-  sid: number;
+  product: ProductModel;
   category: CategoryModel;
   subcategory: SubcategoryModel;
-  // cart: CartModel;
 
   constructor(private service: MainService,
               private formBuilder: FormBuilder,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private router: Router,
+              private cart: CartService) {}
 
   ngOnInit(): void {
 
-    this.cid = parseInt(this.route.snapshot.paramMap.get('cid'));
-    this.sid = parseInt(this.route.snapshot.paramMap.get('sid'));
+    // this.cid = parseInt(this.route.snapshot.paramMap.get('cid'));
+    // this.sid = parseInt(this.route.snapshot.paramMap.get('sid'));
     this.pid = parseInt(this.route.snapshot.paramMap.get('pid'));
 
     // this.service.getCart().subscribe(response => {
@@ -38,12 +38,12 @@ export class ProductPageComponent implements OnInit {
     //   console.log(this.product);
     // }, error => console.log(error));
 
-    this.service.getCategory(this.cid).subscribe(response => {
+    this.service.getCategoryOfProduct(this.pid).subscribe(response => {
       this.category = response;
       console.log(this.product);
     }, error => console.log(error));
 
-    this.service.getSubcategory(this.sid).subscribe(response => {
+    this.service.getSubcategoryOfProduct(this.pid).subscribe(response => {
       this.subcategory = response;
       console.log(this.product);
     }, error => console.log(error));
@@ -55,6 +55,8 @@ export class ProductPageComponent implements OnInit {
   }
 
   addToCart(quantity: number) {
-
+    this.cart.addToCart(this.pid, quantity);
+    console.log(this.cart.getQuantity());
+    window.location.reload();
   }
 }

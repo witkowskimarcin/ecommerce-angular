@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoryModel} from '../model/category.model';
+import {CategoryModel} from '../_model/category.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AdminService} from '../admin.service';
-import {ProductModel} from '../model/products.model';
+import {AdminService} from '../_service/admin.service';
+import {ProductModel} from '../_model/products.model';
 import {ActivatedRoute} from '@angular/router';
-import {ImageModel} from '../model/image.model';
+import {ImageModel} from '../_model/image.model';
+import {MainService} from '../_service/main.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -21,6 +22,7 @@ export class AdminProductsComponent implements OnInit {
   images: ImageModel[];
 
   constructor(private service: AdminService,
+              private mainService: MainService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute)
   {
@@ -40,7 +42,7 @@ export class AdminProductsComponent implements OnInit {
       images: ['']
     });
 
-    this.service.getProducts(this.sid).subscribe(response => {
+    this.mainService.getProducts(this.sid).subscribe(response => {
       this.products = response;
     }, error => console.log(error));
   }

@@ -1,6 +1,59 @@
 <mat-toolbar>
-  <a mat-button routerLink="">E-commerce</a>
-  <span class="example-spacer"></span>
-  <a mat-button routerLink="login">Konto</a>
-  <a mat-button routerLink="cart">Koszyk (0)</a>
+  <mat-toolbar-row>
+    <a mat-button routerLink="">Sklep komputerowy</a>
+    <span class="example-fill-remaining-space"></span>
+    <span class="align-center"></span>
+    <span class="example-spacer"></span>
+
+<!--    <button mat-button>Kontakt</button>-->
+
+    <button mat-icon-button routerLink="/contact">
+      <mat-icon>mail</mat-icon>
+    </button>
+
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <ng-template *ngIf="user!=null; else elseBlockLogin">
+
+      <button mat-menu-item routerLink="/user">
+        <mat-icon>person</mat-icon>
+        <span>Konto</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Wyloguj</span>
+      </button>
+
+      </ng-template>
+
+    <ng-template #elseBlockLogin>
+
+      <button mat-menu-item routerLink="/login">
+<!--        <mat-icon>dialpad</mat-icon>-->
+        <span>Zaloguj się</span>
+      </button>
+      <button mat-menu-item routerLink="/register">
+<!--        <mat-icon>voicemail</mat-icon>-->
+        <span>Utwórz konto</span>
+      </button>
+
+    </ng-template>
+    </mat-menu>
+
+    <button *ngIf="quantity>0; else elseBlock" mat-icon-button matBadge="{{quantity}}" matBadgePosition="after" matBadgeColor="warn" routerLink="cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+
+    <ng-template #elseBlock>
+      <button routerLink="cart" mat-raised-button color="primary">
+        <button *ngIf="quantity>0; else elseBlock" mat-icon-button routerLink="cart">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </button>
+    </ng-template>
+
+  </mat-toolbar-row>
 </mat-toolbar>

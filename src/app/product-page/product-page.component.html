@@ -55,10 +55,10 @@
             <h5 class="card-text"><a href="#">Koszty dostawy</a></h5>
             <h5 class="card-text"><a href="#">Sprawdź dostępność w salonach</a></h5>
             <div *ngIf="product.quantity>0">
-              <a class="btn btn-lg btn-success btn-block" style="color:#ffffff;" (click)="addToCart(1)">Do koszyka</a>
+              <a mat-raised-button color="primary" (click)="addToCart(1)">Do koszyka</a>
             </div>
             <div *ngIf="product.quantity<=0">
-              <a class="btn btn-lg btn-danger btn-block" style="color:#ffffff;">Brak produktu</a>
+              <a mat-raised-button color="warn">Brak produktu</a>
             </div>
           </div>
         </div>

@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import {CategoryModel} from '../model/category.model';
-import {AdminService} from '../admin.service';
+import {CategoryModel} from '../_model/category.model';
+import {AdminService} from '../_service/admin.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SubcategoryModel} from '../model/subcategory.model';
-import {PromotedproductModel} from '../model/promotedproduct.model';
-import {OpportunityModel} from '../model/opportunity.model';
+import {SubcategoryModel} from '../_model/subcategory.model';
+import {PromotedproductModel} from '../_model/promotedproduct.model';
+import {OpportunityModel} from '../_model/opportunity.model';
+import {MainService} from '../_service/main.service';
 
 @Component({
   selector: 'app-admin',
@@ -25,14 +26,22 @@ export class AdminComponent implements OnInit  {
   formPromotedProduct: FormGroup;
   formOpporunity: FormGroup;
 
-  constructor(private service: AdminService,  private formBuilder: FormBuilder) {}
+  constructor(private service: AdminService,
+              private mainService: MainService,
+              private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
 
-    this.promotedproducts = [];
-
-    this.service.getCategories().subscribe(response => {
+    this.mainService.getCategories().subscribe(response => {
       this.categories = response;
+    }, error => console.log(error));
+
+    this.mainService.getPromotedProducts().subscribe(response => {
+      this.promotedproducts = response;
+    }, error => console.log(error));
+
+    this.mainService.getOpportunity().subscribe(response => {
+      this.opportunity = response;
     }, error => console.log(error));
 
     this.formC = this.formBuilder.group({
@@ -94,10 +103,12 @@ export class AdminComponent implements OnInit  {
 
   addPromotedProduct(){
     let id = this.formPromotedProduct.value.productId;
+    this.service.addPromotedProduct(id).subscribe(response => {} , error => console.log(error));
   }
 
   setOpportunity(){
     let id = this.formOpporunity.value.productId;
+    this.service.setOpportunity(id).subscribe(response => {} , error => console.log(error));
   }
 
   setEditFormCategory(category: CategoryModel){

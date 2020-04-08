@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {CategoryModel} from './model/category.model';
-import {SubcategoryModel} from './model/subcategory.model';
-import {ProductModel} from './model/products.model';
-import {PromotedproductModel} from './model/promotedproduct.model';
-import {OpportunityModel} from './model/opportunity.model';
+import {CategoryModel} from '../_model/category.model';
+import {SubcategoryModel} from '../_model/subcategory.model';
+import {ProductModel} from '../_model/products.model';
+import {PromotedproductModel} from '../_model/promotedproduct.model';
+import {OpportunityModel} from '../_model/opportunity.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +13,6 @@ import {OpportunityModel} from './model/opportunity.model';
 export class AdminService {
 
   constructor(private http: HttpClient) { }
-
-  getCategories(): Observable<CategoryModel[]>{
-    const address = 'panel/admin/categories';
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.get<any>(address, { headers });
-  }
-
-  getCategory(id: number): Observable<CategoryModel>{
-    const address = 'panel/admin/category/' +id;
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.get<any>(address, { headers });
-  }
 
   addCategory(category: CategoryModel){
     const address = 'panel/admin/category/add';
@@ -46,18 +34,6 @@ export class AdminService {
 
   //============================
 
-  getSubcategories(id: number): Observable<SubcategoryModel[]>{
-    const address = 'panel/admin/category/'+id+'/subcategories';
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.get<any>(address, { headers });
-  }
-
-  getSubcategory(id: number): Observable<SubcategoryModel>{
-    const address = 'panel/admin/subcategory/'+id;
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.get<any>(address, { headers });
-  }
-
   addSubcategory(id: number, category: SubcategoryModel){
     const address = 'panel/admin/category/'+id+'/subcategory/add';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
@@ -77,18 +53,6 @@ export class AdminService {
   }
 
   //=============================
-
-  getProducts(id: number): Observable<ProductModel[]>{
-    const address = 'panel/admin/subcategory/'+id+'/products';
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.get<any>(address, { headers });
-  }
-
-  getProduct(id: number): Observable<ProductModel>{
-    const address = 'panel/admin/product/'+id;
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.get<any>(address, { headers });
-  }
 
   addProduct(id: number, p: ProductModel){
     const address = 'panel/admin/subcategory/'+id+'/product/add';
@@ -110,16 +74,10 @@ export class AdminService {
 
   //===============================================
 
-  getPromotedProducts(): Observable<PromotedproductModel[]>{
-    const address = 'panel/admin/promotedproducts';
+  addPromotedProduct(id: number){
+    const address = 'panel/admin/promotedproduct/product/'+id+'/add';
     const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.get<any>(address, { headers });
-  }
-
-  addPromotedProduct(p: PromotedproductModel){
-    const address = 'panel/admin/promotedproduct/add';
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.post<any>(address, p, { headers });
+    return this.http.post<any>(address, { headers });
   }
 
   removePromotedProduct(id: number){
@@ -129,12 +87,6 @@ export class AdminService {
   }
 
   //=================================================
-
-  getOpportunity(): Observable<OpportunityModel[]>{
-    const address = 'panel/admin/opportunity';
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    return this.http.get<any>(address, { headers });
-  }
 
   setOpportunity(o: OpportunityModel){
     const address = 'panel/admin/opportunity/set';
