@@ -29,7 +29,15 @@
     <td>{{product.price}} zł</td>
   </tr>
   <br>
-  <tr>Razem: {{getSum()}} zł</tr>
+  <tr>
+    <td>Razem: {{getSum()}} zł</td>
+  </tr>
+  <tr>
+    <td><button mat-raised-button color="primary" routerLink="/order">Złóż zamówienie</button></td>
+    <td></td>
+    <td></td>
+    <td><button mat-raised-button color="warn" (click)="cleanCart()">Wyczyść koczyk</button></td>
+  </tr>
 </table>
 <ng-template #elseBlock>
   <h3>

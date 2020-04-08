@@ -55,4 +55,9 @@ export class CartComponent implements OnInit {
     this.cart.removeFromCart(id);
     window.location.reload();
   }
+
+  cleanCart() {
+    this.cart.cleanCart();
+    window.location.reload();
+  }
 }

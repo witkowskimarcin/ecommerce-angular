@@ -26,7 +26,8 @@ export class CartService{
     {
       // this.cart.products.delete(id);
 
-      let newMap = {};
+      let newMap = new Map<number, number>();
+      // let newMap = {};
       for (let k in this.cart.products) {
         if (parseInt(k) != id) newMap[k] = this.cart.products[k];
       }
@@ -35,13 +36,10 @@ export class CartService{
     this.setLocalStorage();
   }
 
-  removeAllProducts(){
-    this.cart.products = {};
-  }
-
   removeFromCart(id: number){
 
-    let newMap = {};
+    let newMap = new Map<number, number>();
+    // newMap = {};
     for (let k in this.cart.products) {
       if (parseInt(k) != id) newMap[k] = this.cart.products[k];
     }
@@ -80,11 +78,21 @@ export class CartService{
 
   getQuantity(){
     let sum = 0;
-
     for (let k in this.cart.products) {
       sum += 1;
     }
-
     return sum;
+
+    // return JSON.parse(JSON.stringify(this.cart)).length;
+
+    // return 0;
+
+    // return this.cart.products.size;
+  }
+
+
+  cleanCart() {
+    this.cart = new CartModel();
+    this.setLocalStorage();
   }
 }

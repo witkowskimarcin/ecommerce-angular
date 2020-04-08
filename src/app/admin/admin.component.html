@@ -144,6 +144,18 @@
             {{p.product.name}}
           </mat-panel-title>
         </mat-expansion-panel-header>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Usuń
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+            Czy na pewno ?
+            <button mat-button (click)="removePromotedProduct(p.id)">Usuń</button>
+
+        </mat-expansion-panel>
+
       </mat-expansion-panel>
 
       <mat-expansion-panel>
@@ -180,6 +192,46 @@
             {{opportunity.product.name}}
           </mat-panel-title>
         </mat-expansion-panel-header>
+
+        <mat-expansion-panel (opened)="setEditFormOpportunity(opportunity)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Edytuj
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+            <form [formGroup]="formOpporunityEdit" (ngSubmit)="editOpportunity()">
+              <mat-form-field>
+                <mat-label>ID Produktu</mat-label>
+                <input type="number" formControlName="productId" matInput placeholder="ID Produktu">
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Kod promocyjny</mat-label>
+                <input type="text" formControlName="code" matInput placeholder="Kod promocyjny">
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Ilość promocyjnego produktu</mat-label>
+                <input type="number" formControlName="quantity" matInput placeholder="Ilość promocyjnego produktu">
+              </mat-form-field>
+              <br>
+              <button type="submit" [disabled]="formOpporunityEdit.invalid" mat-button>Edytuj</button>
+            </form>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Usuń
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+                Czy na pewno ?
+            <button mat-button (click)="removeOpportunity()">Usuń</button>
+
+        </mat-expansion-panel>
+
       </mat-expansion-panel>
 
       <mat-expansion-panel>
@@ -193,6 +245,16 @@
           <mat-form-field>
             <mat-label>ID Produktu</mat-label>
             <input type="number" formControlName="productId" matInput placeholder="ID Produktu">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Kod promocyjny</mat-label>
+            <input type="text" formControlName="code" matInput placeholder="Kod promocyjny">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Ilość promocyjnego produktu</mat-label>
+            <input type="number" formControlName="quantity" matInput placeholder="Ilość promocyjnego produktu">
           </mat-form-field>
           <br>
           <button type="submit" [disabled]="formOpporunity.invalid" mat-button>Ustaw</button>

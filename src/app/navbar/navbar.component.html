@@ -43,15 +43,13 @@
     </ng-template>
     </mat-menu>
 
-    <button *ngIf="quantity>0; else elseBlock" mat-icon-button matBadge="{{quantity}}" matBadgePosition="after" matBadgeColor="warn" routerLink="cart">
+    <button *ngIf="quantity>0; else elseBlock" mat-raised-button matBadge="{{quantity}}" matBadgePosition="after" matBadgeColor="warn" routerLink="cart" color="primary">
       <mat-icon>shopping_cart</mat-icon>
     </button>
 
     <ng-template #elseBlock>
-      <button routerLink="cart" mat-raised-button color="primary">
-        <button *ngIf="quantity>0; else elseBlock" mat-icon-button routerLink="cart">
+      <button routerLink="cart" mat-icon-button>
           <mat-icon>shopping_cart</mat-icon>
-        </button>
       </button>
     </ng-template>
 
