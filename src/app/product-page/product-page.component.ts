@@ -20,6 +20,8 @@ export class ProductPageComponent implements OnInit {
   product: ProductModel;
   category: CategoryModel;
   subcategory: SubcategoryModel;
+  numbersOfImages: number[];
+  // admin: boolean;
 
   constructor(private service: MainService,
               private formBuilder: FormBuilder,
@@ -29,14 +31,9 @@ export class ProductPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.cid = parseInt(this.route.snapshot.paramMap.get('cid'));
-    // this.sid = parseInt(this.route.snapshot.paramMap.get('sid'));
     this.pid = parseInt(this.route.snapshot.paramMap.get('pid'));
-
-    // this.service.getCart().subscribe(response => {
-    //   this.cart = response;
-    //   console.log(this.product);
-    // }, error => console.log(error));
+    this.numbersOfImages = [];
+    // this.admin = true;
 
     this.service.getCategoryOfProduct(this.pid).subscribe(response => {
       this.category = response;
@@ -50,6 +47,9 @@ export class ProductPageComponent implements OnInit {
 
     this.service.getProduct(this.pid).subscribe(response => {
       this.product = response;
+      for (let i = 1; i < this.product.images.length; i++) {
+        this.numbersOfImages.push(i);
+      }
       console.log(this.product);
     }, error => console.log(error));
   }

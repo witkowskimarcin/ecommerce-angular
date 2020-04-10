@@ -6,6 +6,7 @@ import {ProductModel} from '../_model/products.model';
 import {ActivatedRoute} from '@angular/router';
 import {ImageModel} from '../_model/image.model';
 import {MainService} from '../_service/main.service';
+import {AngularEditorConfig} from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-admin-products',
@@ -18,8 +19,43 @@ export class AdminProductsComponent implements OnInit {
   sid: number;
   products: ProductModel[];
   form: FormGroup;
+  formEdit: FormGroup;
   image: string | ArrayBuffer;
   images: ImageModel[];
+  imagesEdit: ImageModel[];
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      {class: 'arial', name: 'Arial'},
+      {class: 'times-new-roman', name: 'Times New Roman'},
+      {class: 'calibri', name: 'Calibri'},
+      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+    ],
+    customClasses: [
+      {
+        name: 'h1',
+        class: '',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+    uploadWithCredentials: false,
+    sanitize: true,
+    toolbarPosition: 'top',
+  };
 
   constructor(private service: AdminService,
               private mainService: MainService,
@@ -42,14 +78,21 @@ export class AdminProductsComponent implements OnInit {
       images: ['']
     });
 
+    this.formEdit = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      quantity: ['', Validators.required],
+      images: ['', Validators.required]
+    });
+
     this.mainService.getProducts(this.sid).subscribe(response => {
       this.products = response;
     }, error => console.log(error));
   }
 
   onFileChange(event) {
-    // this.loading = false;
-    if(event.target.files.length > 0) {
+    if (event.target.files.length > 0) {
       const reader = new FileReader();
       reader.onload = (ev: ProgressEvent) => {
         // console.log(reader.result);
@@ -59,18 +102,7 @@ export class AdminProductsComponent implements OnInit {
         this.images.push(i);
       };
       reader.readAsDataURL(event.target.files[0]);
-      // console.log(this.image);
-
-      // this.form.get('images').setValue(this.image);
-
-      // setTimeout(() => {
-      //   // this.loading = true;
-      // }, 1000);
     }
-  }
-
-  editProduct(id: number){
-
   }
 
   addProduct() {
@@ -88,5 +120,39 @@ export class AdminProductsComponent implements OnInit {
     console.log(p);
     console.log(p.images);
     this.service.addProduct(this.sid, p).subscribe(response => {}, error => console.log(error));
+  }
+
+  setFormEdit(product: ProductModel){
+    this.formEdit = this.formBuilder.group({
+      name: [product.name, Validators.required],
+      description: [product.description, Validators.required],
+      price: [product.price, Validators.required],
+      quantity: [product.quantity, Validators.required]
+    });
+  }
+
+  onFileChangeEdit(event) {
+    if (event.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = (ev: ProgressEvent) => {
+        this.image = reader.result;
+        let i = new ImageModel();
+        i.image = this.image.toString();
+        this.imagesEdit.push(i);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  editProduct(p: ProductModel){
+
+    p.name = this.formEdit.value.name;
+    p.description = this.formEdit.value.description;
+    p.price = this.formEdit.value.price;
+    p.quantity = this.formEdit.value.quantity;
+    p.name = this.formEdit.value.name;
+    // p.images = this.images;
+    // p.images.map((e) => e.image = e.image.substring(e.image.indexOf(',') + 1));
+    this.service.editProduct(p.id, p).subscribe(response => {}, error => console.log(error));
   }
 }

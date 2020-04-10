@@ -34,6 +34,7 @@ import { OrderComponent } from './order/order.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { LoginComponent } from './login/login.component';
         ReactiveFormsModule,
         MatCarouselModule.forRoot(),
         MatChipsModule,
-        MatBadgeModule
+        MatBadgeModule,
+        AngularEditorModule
     ],
   providers: [],
   bootstrap: [AppComponent]

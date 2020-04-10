@@ -10,6 +10,7 @@ import {UserComponent} from './user/user.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ContactComponent} from './contact/contact.component';
+import {OrderComponent} from './order/order.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'user', component: UserComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'order', component: OrderComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'admin/category/:cid/subcategory/:sid/products', component: AdminProductsComponent },
   { path: 'category/:cid/subcategory/:sid/products', component: ProductsComponent },

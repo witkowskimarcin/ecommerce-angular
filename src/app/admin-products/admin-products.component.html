@@ -19,7 +19,7 @@
           </mat-expansion-panel-header>
         </mat-expansion-panel>
 
-        <mat-expansion-panel>
+        <mat-expansion-panel (opened)="setFormEdit(p)">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Edytuj
@@ -27,6 +27,32 @@
           </mat-expansion-panel-header>
 
           <img src="data:image/jpeg;base64,{{p.images[0]}}"/>
+
+          <form [formGroup]="formEdit" (ngSubmit)="editProduct(p)">
+            <mat-form-field>
+              <mat-label>Nazwa</mat-label>
+              <input type="text" formControlName="name" matInput placeholder="Nazwa">
+            </mat-form-field>
+            <br>
+            <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
+            <br>
+            <mat-form-field>
+              <mat-label>Cena</mat-label>
+              <input type="number" formControlName="price" matInput placeholder="price">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Ilość</mat-label>
+              <input type="number" formControlName="quantity" matInput placeholder="quantity">
+            </mat-form-field>
+            <br>
+<!--            <input type="file" formControlName="images" placeholder="images" (change)="onFileChangeEdit($event)">-->
+            <br>
+            <div *ngFor="let i of images">
+              <img src="{{i.image}}"/>
+            </div>
+            <button type="submit" [disabled]="formEdit.invalid" mat-button>Edytuj</button>
+          </form>
 
         </mat-expansion-panel>
 
@@ -52,10 +78,7 @@
             <input type="text" formControlName="name" matInput placeholder="Nazwa">
           </mat-form-field>
           <br>
-          <mat-form-field>
-            <mat-label>Opis</mat-label>
-            <input type="text" formControlName="description" matInput placeholder="description">
-          </mat-form-field>
+          <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
           <br>
           <mat-form-field>
             <mat-label>Cena</mat-label>
