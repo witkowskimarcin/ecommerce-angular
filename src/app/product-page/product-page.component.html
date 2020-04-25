@@ -48,7 +48,7 @@
 <!--              <ng-template *ngFor="let i of product.images; let j=index;">-->
 <!--                <li  data-target="#carouselExampleIndicators" data-slide-to="{{j+1}}"></li>-->
 <!--              </ng-template>-->
-              <li *ngFor="let index of numbersOfImages" data-target="#carouselExampleIndicators" data-slide-to="{{index}}"></li>
+             <!-- <li *ngFor="let index of numbersOfImages" data-target="#carouselExampleIndicators" data-slide-to="{{index}}"></li>  -->
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -58,9 +58,9 @@
 <!--                <img src="data:image/jpeg;base64,{{product.images[1].image}}" class="d-block w-100" alt="..." height="250">-->
 <!--              </div>-->
 <!--              <ng-template >-->
-                <div class="carousel-item" *ngfor="let img of product.images">
+               <!-- <div class="carousel-item" *ngfor="let img of product.images">
                   <img src="data:image/jpeg;base64,{{img.image}}" class="d-block w-100" alt="..." height="250">
-                </div>
+                </div>  -->
 <!--              </ng-template>-->
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
