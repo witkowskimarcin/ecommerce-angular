@@ -14,15 +14,14 @@ import { AdminComponent } from './admin/admin.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
-import { NavigationComponent } from './navigation/navigation.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { AdminProductsComponent } from './admin-products/admin-products.component';
-import { ProductPageComponent } from './product-page/product-page.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { ProductPageComponent } from './products/product-page/product-page.component';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {MatChipsModule} from '@angular/material/chips';
 import { ProductsComponent } from './products/products.component';
@@ -42,7 +41,6 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
     HomeComponent,
     NavbarComponent,
     AdminComponent,
-    NavigationComponent,
     AdminProductsComponent,
     ProductPageComponent,
     ProductsComponent,

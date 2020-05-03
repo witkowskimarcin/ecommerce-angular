@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoryModel} from '../_model/category.model';
+import {CategoryModel} from '../../_model/category.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AdminService} from '../_service/admin.service';
-import {ProductModel} from '../_model/products.model';
+import {AdminService} from '../../_service/admin.service';
+import {ProductModel} from '../../_model/products.model';
 import {ActivatedRoute} from '@angular/router';
-import {ImageModel} from '../_model/image.model';
-import {MainService} from '../_service/main.service';
+import {ImageModel} from '../../_model/image.model';
+import {MainService} from '../../_service/main.service';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 
 @Component({

@@ -1,1 +1,68 @@
-<p>register works!</p>
+<br><br>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Stwórz konto</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <br>
+    <form class="example-form" [formGroup]="form" (ngSubmit)="register()">
+      <table class="example-full-width" cellspacing="0">
+
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Adres e-mail" [(ngModel)]="email" type="email" formControlName="username" required>
+            </mat-form-field>
+          </td>
+        </tr>
+
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Hasło" [(ngModel)]="password" type="password" formControlName="password" required>
+          </mat-form-field></td>
+        </tr>
+
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Imię" [(ngModel)]="firstname" type="text" formControlName="firstname">
+          </mat-form-field></td>
+        </tr>
+
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Nazwisko" [(ngModel)]="lastname" type="text" formControlName="lastname">
+          </mat-form-field></td>
+        </tr>
+
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Miasto zamieszkania" [(ngModel)]="locality" type="text" formControlName="locality">
+          </mat-form-field></td>
+        </tr>
+
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Adress zamieszkania" [(ngModel)]="street" type="text" formControlName="street">
+          </mat-form-field></td>
+        </tr>
+
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Kod pocztowy" [(ngModel)]="zipCode" type="text" formControlName="zipCode">
+          </mat-form-field></td>
+        </tr>
+
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Numer telefonu" [(ngModel)]="phone" type="text" formControlName="phone">
+          </mat-form-field></td>
+        </tr>
+
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Login</button>
+  </mat-card-actions>
+</mat-card>

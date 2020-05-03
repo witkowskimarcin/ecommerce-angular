@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AdminService} from '../_service/admin.service';
 import {MainService} from '../_service/main.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit {
   password: string;
 
   constructor(private service: MainService,
-              private mainService: MainService,
               private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {

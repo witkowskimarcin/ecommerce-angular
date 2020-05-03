@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminService} from '../_service/admin.service';
+import {AdminService} from '../../_service/admin.service';
 import {FormBuilder} from '@angular/forms';
-import {ProductModel} from '../_model/products.model';
-import {MainService} from '../_service/main.service';
+import {ProductModel} from '../../_model/products.model';
+import {MainService} from '../../_service/main.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SubcategoryModel} from '../_model/subcategory.model';
-import {CategoryModel} from '../_model/category.model';
-import {CartModel} from '../_model/cart.model';
-import {CartService} from '../_service/cart.service';
+import {SubcategoryModel} from '../../_model/subcategory.model';
+import {CategoryModel} from '../../_model/category.model';
+import {CartModel} from '../../_model/cart.model';
+import {CartService} from '../../_service/cart.service';
 
 @Component({
   selector: 'app-product-page',

@@ -9,6 +9,7 @@ import {CartModel} from '../_model/cart.model';
 import {OpportunityModel} from '../_model/opportunity.model';
 import {catchError} from 'rxjs/operators';
 import {CustomErrorHandler} from './custom_error_handler';
+import {UserModel} from '../_model/user.model';
 
 @Injectable({
   providedIn: 'root'
